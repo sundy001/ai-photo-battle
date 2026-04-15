@@ -1,23 +1,80 @@
-import { APITester } from "./APITester";
+import { useState } from "react";
 import "./index.css";
+import { config } from "./config";
+import { StartScreen } from "./components/StartScreen";
+import { QuestionScreen } from "./components/QuestionScreen";
+import { FeedbackOverlay } from "./components/FeedbackOverlay";
+import { GlitchSequence } from "./components/GlitchSequence";
+import { EndScreen } from "./components/EndScreen";
 
-import logo from "./logo.svg";
-import reactLogo from "./react.svg";
+type GameState =
+  | { phase: "start" }
+  | { phase: "question"; index: number }
+  | { phase: "feedback"; index: number; correct: boolean }
+  | { phase: "glitch" }
+  | { phase: "end" };
 
 export function App() {
-  return (
-    <div className="app">
-      <div className="logo-container">
-        <img src={logo} alt="Bun Logo" className="logo bun-logo" />
-        <img src={reactLogo} alt="React Logo" className="logo react-logo" />
-      </div>
+  const [state, setState] = useState<GameState>({ phase: "start" });
 
-      <h1>Bun + React</h1>
-      <p>
-        Edit <code>src/App.tsx</code> and save to test HMR
-      </p>
-      <APITester />
-    </div>
+  const totalQuestions = config.questions.length;
+  const isLastQuestion = (index: number) => index === totalQuestions - 1;
+
+  function handleStart() {
+    setState({ phase: "question", index: 0 });
+  }
+
+  function handleAnswer(pickedAI: boolean) {
+    if (state.phase !== "question") return;
+
+    if (isLastQuestion(state.index)) {
+      // Q6: immediately trigger glitch, no feedback
+      setState({ phase: "glitch" });
+    } else {
+      setState({ phase: "feedback", index: state.index, correct: pickedAI });
+    }
+  }
+
+  function handleNext() {
+    if (state.phase !== "feedback") return;
+    setState({ phase: "question", index: state.index + 1 });
+  }
+
+  function handleGlitchComplete() {
+    setState({ phase: "end" });
+  }
+
+  return (
+    <>
+      {state.phase === "start" && <StartScreen onStart={handleStart} />}
+
+      {state.phase === "question" && (
+        <QuestionScreen
+          question={config.questions[state.index]!}
+          questionIndex={state.index}
+          totalQuestions={totalQuestions}
+          onAnswer={handleAnswer}
+        />
+      )}
+
+      {state.phase === "feedback" && (
+        <>
+          <QuestionScreen
+            question={config.questions[state.index]!}
+            questionIndex={state.index}
+            totalQuestions={totalQuestions}
+            onAnswer={() => {}}
+          />
+          <FeedbackOverlay correct={state.correct} onNext={handleNext} />
+        </>
+      )}
+
+      {state.phase === "glitch" && (
+        <GlitchSequence onComplete={handleGlitchComplete} />
+      )}
+
+      {state.phase === "end" && <EndScreen />}
+    </>
   );
 }
 
