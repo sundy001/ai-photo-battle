@@ -12,6 +12,7 @@
     "gsap": "^3.15.0",
     "pixi-filters": "^6.1.5",
     "pixi.js": "^8.18.1",
+    "powerglitch": "^2.5.0",
     "react": "^19",
     "react-dom": "^19"
   },

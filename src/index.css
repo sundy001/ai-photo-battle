@@ -6,7 +6,11 @@
 }
 
 :root {
-  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
   line-height: 1.5;
   color: #333;
   background-color: #f8f6f3;
@@ -23,6 +27,9 @@ body {
   justify-content: center;
   align-items: center;
   overflow-x: hidden;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-size: 300% 300%;
+  animation: gradient-shift 8s ease infinite;
 }
 
 #root {
@@ -41,22 +48,61 @@ body {
   padding: 2rem;
 }
 
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .start-content {
   text-align: center;
+}
+
+.start-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.start-icon .icon-camera,
+.start-icon .icon-ai {
+  font-size: 2.5rem;
+}
+
+.start-icon .icon-vs {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .start-title {
   font-size: 3rem;
   font-weight: 800;
-  color: #1a1a2e;
+  color: #fff;
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
 }
 
 .start-tagline {
   font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 3rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.75rem;
+}
+
+.start-instruction {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 2.5rem;
 }
 
 .start-button {
@@ -68,12 +114,24 @@ body {
   font-size: 1.2rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(108, 99, 255, 0.4);
 }
 
 .start-button:active {
   transform: scale(0.96);
+}
+
+.start-footer {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
 }
 
 /* ===== Question Screen ===== */
@@ -99,7 +157,7 @@ body {
 .question-text {
   font-size: 1.2rem;
   font-weight: 700;
-  color: #1a1a2e;
+  color: white;
 }
 
 .photos-container {
@@ -111,12 +169,14 @@ body {
 }
 
 .photo-card {
-  background: white;
-  border: 3px solid #e8e8e8;
-  border-radius: 16px;
+  border: none;
+  overflow: none;
+  border-radius: 8px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.15s, border-color 0.15s;
+  transition:
+    transform 0.15s,
+    border-color 0.15s;
   padding: 0;
   width: 100%;
 }
@@ -209,7 +269,9 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s, opacity 0.3s;
+  transition:
+    transform 0.15s,
+    opacity 0.3s;
   opacity: 0;
   pointer-events: none;
   z-index: 1;
@@ -245,7 +307,7 @@ body {
   overflow: hidden;
 }
 
-/* Scanlines */
+/* Scanlines — sized for Retina displays */
 .scanlines {
   position: absolute;
   inset: 0;
@@ -253,10 +315,10 @@ body {
   z-index: 10;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 255, 0, 0.03) 0px,
-    rgba(0, 255, 0, 0.03) 1px,
-    transparent 1px,
-    transparent 3px
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 2px,
+    transparent 2px,
+    transparent 6px
   );
 }
 
@@ -285,7 +347,9 @@ body {
   color: #00ff41;
   opacity: 0;
   transform: translateY(10px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
   margin-bottom: 1rem;
   text-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
 }
@@ -304,8 +368,12 @@ body {
 }
 
 @keyframes flash-anim {
-  0% { opacity: 1; }
-  100% { opacity: 0; }
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Final reveal (inside glitch sequence) */
@@ -355,8 +423,12 @@ body {
 }
 
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 /* ===== End Screen ===== */
