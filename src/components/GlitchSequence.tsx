@@ -3,6 +3,7 @@ import { config } from "../config";
 import gsap from "gsap";
 import { Application, Assets, Sprite } from "pixi.js";
 import { GlitchFilter, RGBSplitFilter } from "pixi-filters";
+import { PowerGlitch } from "powerglitch";
 
 interface GlitchSequenceProps {
   onComplete: () => void;
@@ -15,6 +16,7 @@ export function GlitchSequence({ onComplete }: GlitchSequenceProps) {
   const [showFlash, setShowFlash] = useState(false);
   const [showSecondMessages, setShowSecondMessages] = useState(false);
   const pixiRef = useRef<Application | null>(null);
+  const finalPhotoRef = useRef<HTMLDivElement>(null);
 
   // PixiJS glitch effect
   useEffect(() => {
@@ -221,7 +223,20 @@ export function GlitchSequence({ onComplete }: GlitchSequenceProps) {
     tl.call(() => setShowSecondMessages(true), [], 1.5);
     tl.call(() => onComplete(), [], 3);
 
-    return () => { tl.kill(); };
+    // PowerGlitch on final photo
+    let stopGlitch: (() => void) | undefined;
+    if (finalPhotoRef.current) {
+      const result = PowerGlitch.glitch(finalPhotoRef.current, {
+        playMode: "always",
+        timing: { duration: 2500, iterations: Infinity },
+        glitchTimeSpan: { start: 0.6, end: 0.8 },
+        shake: { velocity: 12, amplitudeX: 0.04, amplitudeY: 0.04 },
+        slice: { count: 3, velocity: 10, minHeight: 0.02, maxHeight: 0.12, hueRotate: true },
+      });
+      stopGlitch = result.stopGlitch;
+    }
+
+    return () => { tl.kill(); stopGlitch?.(); };
   }, [phase]);
 
   return (
@@ -249,7 +264,7 @@ export function GlitchSequence({ onComplete }: GlitchSequenceProps) {
         <>
           {showFlash && <div className="flash-white" />}
           <div className="final-reveal visible">
-            <div className="final-photo">
+            <div className="final-photo" ref={finalPhotoRef}>
               <img src={config.ending.photo} alt="" />
             </div>
             <div className={`final-messages ${showSecondMessages ? "visible" : ""}`}>

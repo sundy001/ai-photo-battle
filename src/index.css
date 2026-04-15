@@ -307,7 +307,7 @@ body {
   overflow: hidden;
 }
 
-/* Scanlines — sized for Retina displays */
+/* Scanlines — animated for Retina displays */
 .scanlines {
   position: absolute;
   inset: 0;
@@ -320,6 +320,13 @@ body {
     transparent 2px,
     transparent 6px
   );
+  background-size: 100% 8px;
+  animation: scanline-scroll 4s linear infinite;
+}
+
+@keyframes scanline-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 8px; }
 }
 
 /* PixiJS canvas wrapper */
