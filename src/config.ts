@@ -1,3 +1,5 @@
+import testImage from "./images/test.jpg";
+
 export interface Question {
   realPhoto: string;
   aiPhoto: string;
@@ -36,35 +38,35 @@ export const config: GameConfig = {
       aiPhoto: placeholder("Q1 AI"),
       aiPosition: "bottom",
     },
-    {
-      realPhoto: placeholder("Q2 Real"),
-      aiPhoto: placeholder("Q2 AI"),
-      aiPosition: "top",
-    },
-    {
-      realPhoto: placeholder("Q3 Real"),
-      aiPhoto: placeholder("Q3 AI"),
-      aiPosition: "bottom",
-    },
-    {
-      realPhoto: placeholder("Q4 Real"),
-      aiPhoto: placeholder("Q4 AI"),
-      aiPosition: "top",
-    },
-    {
-      realPhoto: placeholder("Q5 Real"),
-      aiPhoto: placeholder("Q5 AI"),
-      aiPosition: "bottom",
-    },
-    {
-      realPhoto: placeholder("Q6 Real"),
-      aiPhoto: placeholder("Q6 AI"),
-      aiPosition: "top",
-    },
+    // {
+    //   realPhoto: placeholder("Q2 Real"),
+    //   aiPhoto: placeholder("Q2 AI"),
+    //   aiPosition: "top",
+    // },
+    // {
+    //   realPhoto: placeholder("Q3 Real"),
+    //   aiPhoto: placeholder("Q3 AI"),
+    //   aiPosition: "bottom",
+    // },
+    // {
+    //   realPhoto: placeholder("Q4 Real"),
+    //   aiPhoto: placeholder("Q4 AI"),
+    //   aiPosition: "top",
+    // },
+    // {
+    //   realPhoto: placeholder("Q5 Real"),
+    //   aiPhoto: placeholder("Q5 AI"),
+    //   aiPosition: "bottom",
+    // },
+    // {
+    //   realPhoto: placeholder("Q6 Real"),
+    //   aiPhoto: placeholder("Q6 AI"),
+    //   aiPosition: "top",
+    // },
   ],
 
   ending: {
-    photo: placeholder("Ending"),
+    photo: testImage,
     messagesFirst: [
       "「等等…這張照片不是 AI 生成的。」",
       "「這是真實的記憶。」",

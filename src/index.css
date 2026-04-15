@@ -146,13 +146,22 @@ body {
 }
 
 .feedback-overlay.correct {
-  background: rgba(34, 197, 94, 0.15);
   border: 6px solid var(--green);
 }
 
 .feedback-overlay.wrong {
-  background: rgba(239, 68, 68, 0.15);
   border: 6px solid var(--red);
+}
+
+.feedback-backdrop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .feedback-content {
@@ -200,7 +209,15 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: transform 0.15s;
+  transition: transform 0.15s, opacity 0.3s;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.next-button.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .next-button:active {
@@ -243,80 +260,17 @@ body {
   );
 }
 
-/* Shake phase */
-.shake-content {
-  animation: shake 0.15s infinite;
-}
-
-.glitch-photo {
-  width: 280px;
+/* PixiJS canvas wrapper */
+.glitch-canvas-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 12px;
   overflow: hidden;
-  border: 2px solid #333;
 }
 
-.glitch-photo img {
-  width: 100%;
-  display: block;
-}
-
-@keyframes shake {
-  0% { transform: translate(0, 0) rotate(0deg); }
-  20% { transform: translate(-8px, 4px) rotate(-1deg); }
-  40% { transform: translate(6px, -6px) rotate(1deg); }
-  60% { transform: translate(-4px, 8px) rotate(-0.5deg); }
-  80% { transform: translate(8px, -2px) rotate(0.5deg); }
-  100% { transform: translate(0, 0) rotate(0deg); }
-}
-
-/* Glitch break phase */
-.glitch-break {
-  position: absolute;
-  inset: 0;
-  animation: glitch-flicker 0.1s infinite;
-}
-
-.glitch-bars {
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    transparent 2px,
-    rgba(255, 0, 0, 0.1) 2px,
-    rgba(0, 255, 0, 0.1) 4px,
-    transparent 4px,
-    transparent 8px
-  );
-  animation: bars-shift 0.08s infinite;
-}
-
-.glitch-noise {
-  position: absolute;
-  inset: 0;
-  opacity: 0.15;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 256px;
-  animation: noise-move 0.05s steps(5) infinite;
-}
-
-@keyframes glitch-flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-
-@keyframes bars-shift {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(8px); }
-}
-
-@keyframes noise-move {
-  0% { transform: translate(0, 0); }
-  20% { transform: translate(-10px, 10px); }
-  40% { transform: translate(10px, -10px); }
-  60% { transform: translate(-10px, -10px); }
-  80% { transform: translate(10px, 10px); }
-  100% { transform: translate(0, 0); }
+.glitch-canvas-wrapper canvas {
+  border-radius: 12px;
 }
 
 /* Messages phase */
@@ -361,7 +315,12 @@ body {
   align-items: center;
   padding: 2rem;
   gap: 2rem;
-  animation: fade-in 1s ease;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.final-reveal.visible {
+  opacity: 1;
 }
 
 .final-photo {

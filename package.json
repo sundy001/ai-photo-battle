@@ -9,6 +9,9 @@
     "start": "NODE_ENV=production bun src/index.ts"
   },
   "dependencies": {
+    "gsap": "^3.15.0",
+    "pixi-filters": "^6.1.5",
+    "pixi.js": "^8.18.1",
     "react": "^19",
     "react-dom": "^19"
   },
