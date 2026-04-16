@@ -47,36 +47,36 @@ export const config: GameConfig = {
   wrongText: "Wrong!",
 
   questions: [
-    // {
-    //   realPhoto: sheepReal,
-    //   aiPhoto: sheepAI,
-    //   aiPosition: "bottom",
-    // },
-    // {
-    //   realPhoto: playReal,
-    //   aiPhoto: playAI,
-    //   aiPosition: "top",
-    // },
-    // {
-    //   realPhoto: cityReal,
-    //   aiPhoto: cityAI,
-    //   aiPosition: "bottom",
-    // },
-    // {
-    //   realPhoto: deskReal,
-    //   aiPhoto: deakAI,
-    //   aiPosition: "top",
-    // },
-    // {
-    //   realPhoto: groupReal,
-    //   aiPhoto: groupAI,
-    //   aiPosition: "bottom",
-    // },
-    // {
-    //   realPhoto: hourseReal,
-    //   aiPhoto: houseAI,
-    //   aiPosition: "top",
-    // },
+    {
+      realPhoto: sheepReal,
+      aiPhoto: sheepAI,
+      aiPosition: "bottom",
+    },
+    {
+      realPhoto: playReal,
+      aiPhoto: playAI,
+      aiPosition: "top",
+    },
+    {
+      realPhoto: cityReal,
+      aiPhoto: cityAI,
+      aiPosition: "bottom",
+    },
+    {
+      realPhoto: deskReal,
+      aiPhoto: deakAI,
+      aiPosition: "top",
+    },
+    {
+      realPhoto: groupReal,
+      aiPhoto: groupAI,
+      aiPosition: "bottom",
+    },
+    {
+      realPhoto: hourseReal,
+      aiPhoto: houseAI,
+      aiPosition: "top",
+    },
     {
       realPhoto: coupleReal,
       aiPhoto: coupleAI,
