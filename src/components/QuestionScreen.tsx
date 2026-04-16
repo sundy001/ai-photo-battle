@@ -6,6 +6,7 @@ interface QuestionScreenProps {
   questionIndex: number;
   totalQuestions: number;
   onAnswer: (pickedAI: boolean) => void;
+  revealed?: boolean;
 }
 
 export function QuestionScreen({
@@ -13,6 +14,7 @@ export function QuestionScreen({
   questionIndex,
   totalQuestions,
   onAnswer,
+  revealed = false,
 }: QuestionScreenProps) {
   const topPhoto =
     question.aiPosition === "top" ? question.aiPhoto : question.realPhoto;
@@ -32,9 +34,11 @@ export function QuestionScreen({
       <div className="photos-container">
         <button className="photo-card" onClick={() => onAnswer(topIsAI)}>
           <img src={topPhoto} alt="Photo A" />
+          {revealed && topIsAI && <span className="ai-badge">🤖</span>}
         </button>
         <button className="photo-card" onClick={() => onAnswer(!topIsAI)}>
           <img src={bottomPhoto} alt="Photo B" />
+          {revealed && !topIsAI && <span className="ai-badge">🤖</span>}
         </button>
       </div>
     </div>

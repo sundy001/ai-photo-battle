@@ -64,6 +64,7 @@ export function App() {
             questionIndex={state.index}
             totalQuestions={totalQuestions}
             onAnswer={() => {}}
+            revealed
           />
           <FeedbackOverlay correct={state.correct} onNext={handleNext} />
         </>

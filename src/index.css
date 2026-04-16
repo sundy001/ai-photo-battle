@@ -34,7 +34,7 @@ body {
 
 #root {
   width: 100%;
-  max-width: 430px;
+  max-width: 800px;
   min-height: 100dvh;
   position: relative;
 }
@@ -169,6 +169,7 @@ body {
 }
 
 .photo-card {
+  position: relative;
   border: none;
   overflow: none;
   border-radius: 8px;
@@ -191,6 +192,30 @@ body {
   display: block;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+}
+
+.ai-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.6rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: badge-pop 0.3s ease-out;
+}
+
+@keyframes badge-pop {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* ===== Feedback Overlay ===== */
@@ -325,8 +350,12 @@ body {
 }
 
 @keyframes scanline-scroll {
-  0% { background-position: 0 0; }
-  100% { background-position: 0 8px; }
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 8px;
+  }
 }
 
 /* PixiJS canvas wrapper */

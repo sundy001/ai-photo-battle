@@ -1,21 +1,48 @@
-# bun-react-template
+# Real or AI?
 
-To install dependencies:
+A mobile web game where players guess which photo is AI-generated. Built with Bun + React.
+
+## Setup
 
 ```bash
 bun install
 ```
 
-To start a development server:
+## Development
 
 ```bash
 bun dev
 ```
 
-To run for production:
+## Build
 
 ```bash
-bun start
+bun run build
 ```
 
-This project was created using `bun init` in bun v1.3.3. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+Static files are output to `docs/`.
+
+## Deploy
+
+Deploys to Cloudflare Pages (`real-or-ai.pages.dev`):
+
+```bash
+bun run deploy
+```
+
+Requires [Wrangler](https://developers.cloudflare.com/workers/wrangler/) to be installed and authenticated:
+
+```bash
+bun install -g wrangler
+wrangler login
+```
+
+## Configuration
+
+Edit `src/config.ts` to change:
+
+- Game title and tagline
+- Questions (photo paths + which is AI)
+- Ending messages and photo
+
+Photos are referenced as paths (e.g. `./images/q1-real.jpg`). Place image files in `docs/images/`.

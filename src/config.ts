@@ -1,4 +1,18 @@
-import testImage from "./images/test.jpg";
+import jellyImage from "./images/jelly.png";
+import sheepAI from "./images/sheepAI.png";
+import sheepReal from "./images/sheepReal.jpg";
+import playAI from "./images/playAI.jpg";
+import playReal from "./images/playReal.jpg";
+import cityAI from "./images/cityAI.jpg";
+import cityReal from "./images/cityReal.jpg";
+import deakAI from "./images/deakAI.jpg";
+import deskReal from "./images/deskReal.jpg";
+import groupAI from "./images/groupAI.jpg";
+import groupReal from "./images/groupReal.jpg";
+import houseAI from "./images/houseAI.jpg";
+import hourseReal from "./images/hourseReal.jpg";
+import coupleAI from "./images/coupleAI.jpeg";
+import coupleReal from "./images/coupleReal.jpg";
 
 export interface Question {
   realPhoto: string;
@@ -33,47 +47,53 @@ export const config: GameConfig = {
   wrongText: "Wrong!",
 
   questions: [
+    // {
+    //   realPhoto: sheepReal,
+    //   aiPhoto: sheepAI,
+    //   aiPosition: "bottom",
+    // },
+    // {
+    //   realPhoto: playReal,
+    //   aiPhoto: playAI,
+    //   aiPosition: "top",
+    // },
+    // {
+    //   realPhoto: cityReal,
+    //   aiPhoto: cityAI,
+    //   aiPosition: "bottom",
+    // },
+    // {
+    //   realPhoto: deskReal,
+    //   aiPhoto: deakAI,
+    //   aiPosition: "top",
+    // },
+    // {
+    //   realPhoto: groupReal,
+    //   aiPhoto: groupAI,
+    //   aiPosition: "bottom",
+    // },
+    // {
+    //   realPhoto: hourseReal,
+    //   aiPhoto: houseAI,
+    //   aiPosition: "top",
+    // },
     {
-      realPhoto: placeholder("Q1 Real"),
-      aiPhoto: placeholder("Q1 AI"),
+      realPhoto: coupleReal,
+      aiPhoto: coupleAI,
       aiPosition: "bottom",
     },
-    // {
-    //   realPhoto: placeholder("Q2 Real"),
-    //   aiPhoto: placeholder("Q2 AI"),
-    //   aiPosition: "top",
-    // },
-    // {
-    //   realPhoto: placeholder("Q3 Real"),
-    //   aiPhoto: placeholder("Q3 AI"),
-    //   aiPosition: "bottom",
-    // },
-    // {
-    //   realPhoto: placeholder("Q4 Real"),
-    //   aiPhoto: placeholder("Q4 AI"),
-    //   aiPosition: "top",
-    // },
-    // {
-    //   realPhoto: placeholder("Q5 Real"),
-    //   aiPhoto: placeholder("Q5 AI"),
-    //   aiPosition: "bottom",
-    // },
-    // {
-    //   realPhoto: placeholder("Q6 Real"),
-    //   aiPhoto: placeholder("Q6 AI"),
-    //   aiPosition: "top",
-    // },
   ],
 
   ending: {
-    photo: testImage,
+    photo: jellyImage,
     messagesFirst: [
       "「等等…這張照片不是 AI 生成的。」",
-      "「這是真實的記憶。」",
-      "「Jelly 被困了…」",
+      "「這是真實的發生的事情。」",
+      "「Jelly 被綁架了…」",
     ],
     messagesSecond: [
-      "「她把求救信息交給了一份禮物…」",
+      "「從照片裡的線索，找出她被藏在哪裡…」",
+      "「然後揪出幕後黑手。」",
       "「你的任務，從現在開始。」",
     ],
   },
