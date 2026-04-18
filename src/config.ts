@@ -1,5 +1,5 @@
-import jellyImage from "./images/jelly.png";
-import sheepAI from "./images/sheepAI.png";
+import jellyImage from "./images/jelly.jpg";
+import sheepAI from "./images/sheepAI.jpg";
 import sheepReal from "./images/sheepReal.jpg";
 import playAI from "./images/playAI.jpg";
 import playReal from "./images/playReal.jpg";
